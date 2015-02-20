@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="5"
+    android:gravity="left"
+    android:orientation="horizontal" >
+
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="100px"
+        android:layout_height="204dp"
+        android:layout_above="@+id/button4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="0"
+        android:layout_toLeftOf="@+id/numberPicker3"
+        tools:ignore="ObsoleteLayoutParam,PxUsage" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker3"
+        android:layout_width="192dp"
+        android:layout_height="209dp"
+        android:layout_above="@+id/button4"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button3"
+        android:fitsSystemWindows="false"
+        tools:ignore="PxUsage" >
+    </NumberPicker>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/menu_discard"
+        android:onClick="fak" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="saev"
+        android:text="@string/menu_saev"  />
+
+    <NumberPicker
+        android:id="@+id/numberPicker1"
+        android:layout_width="252dp"
+        android:layout_height="210dp"
+        android:layout_alignBottom="@+id/numberPicker3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/numberPicker3"
+        android:fadingEdge="vertical|none"
+        android:orientation="vertical" />
+
+</RelativeLayout>

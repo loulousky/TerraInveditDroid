@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_label">TerraInvedit</string>
+    <string name="app_name">Terraria inventory editor</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_players">Select a player</string>
+    <string name="title_activity_invedit">Inventory viewer</string>
+    <string name="title_activity_itemedit">Item editor</string>
+    <string name="button_getroot">Acquire root</string>
+    <string name="menu_discard">Discard</string>
+    <string name="menu_saev">Save</string>
+    <string name="javatrans_missingno">Unknown item</string>
+    <string name="javatrans_noterr">Terraria is not installed!</string>
+    <string name="javatrans_werk">Doin\' thingies&#8230;</string>
+    <string name="javatrans_dialog_loader">Loading playerfile</string>
+    <string name="javatrans_dialog_save">Saving playerfile</string>
+    <string name="javatrans_item_missingno">* Empty *</string>
+    <string name="javatrans_item_empty">* Nonexistent item *</string>
+    <string name="javatrans_rootprogress">Acquiring root&#8230;</string>
+    <string name="javatrans_rootejj">Unable to acquire root</string>
+
+</resources>
