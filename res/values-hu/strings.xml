@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_label">Inv.szerk. :P</string>
     <string name="app_name">Terraria inventory szerkesztő</string>
     <string name="action_settings">Beállítások</string>
     <string name="title_activity_activity_players">Válassz ki egy játékost</string>

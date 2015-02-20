@@ -239,6 +239,7 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 								bos.close();
 								//Shell.SU.run("rm " + dat.getStringExtra("ABSINV"));
 								Shell.SU.run("cp " + f.getAbsolutePath() + " " + dat.getStringExtra("ABSINV"));
+								Shell.SU.run("chmod 777 " + dat.getStringExtra("ABSINV"));
 							}
 							else
 							{
