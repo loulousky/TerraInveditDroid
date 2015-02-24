@@ -9,6 +9,7 @@
     <string name="button_getroot">Root szerzés</string>
     <string name="menu_discard">Mégse</string>
     <string name="menu_saev">Mentés</string>
+    <string name="menu_pad">Eltolás</string>
 	<string name="javatrans_missingno">Ismeretlen item</string>
     <string name="javatrans_noterr">Úgy nehéz lesz játékost szerkeszteni, ha a Terraria fel sincs telepítve! :P</string>
     <string name="javatrans_werk">Végzem a dolgomat&#8230;</string>

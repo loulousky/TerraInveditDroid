@@ -10,6 +10,7 @@
     <string name="button_getroot">Acquire root</string>
     <string name="menu_discard">Discard</string>
     <string name="menu_saev">Save</string>
+    <string name="menu_pad">Offset</string>
     <string name="javatrans_missingno">Unknown item</string>
     <string name="javatrans_noterr">Terraria is not installed!</string>
     <string name="javatrans_werk">Doin\' thingies&#8230;</string>
