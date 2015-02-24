@@ -182,15 +182,14 @@ public class ItemRegistry
 		Violent,
 		Legendary,
 		Unreal;
-        
-        @SuppressWarnings("finally")
+
 		public static Buff n(byte i)
         {
         	try
         	{
         		return Buff.values()[i];
         	}
-        	finally
+        	catch(ArrayIndexOutOfBoundsException dummy)
         	{
         		return Buff._;
         	}
