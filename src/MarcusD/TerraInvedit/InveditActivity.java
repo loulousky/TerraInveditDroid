@@ -114,17 +114,17 @@ public class InveditActivity extends ListActivity {
     	{
     		if(res == 420)
     		{
-    			int pos = dat.getIntExtra("POS", -1);
+    			int pos = dat.getIntExtra("POS", 0);
     			ByteBuffer bb = ByteBuffer.allocate(2);
     			bb.order(ByteOrder.LITTLE_ENDIAN);
     			bb.putShort(dat.getShortExtra("ID", (short)0));
-    			buf[(pos * 5) + 89] = bb.get(0);
-    			buf[(pos * 5) + 90] = bb.get(1);
+    			buf[(pos * 5) + 89 + offset] = bb.get(0);
+    			buf[(pos * 5) + 90 + offset] = bb.get(1);
     			bb.clear();
     			bb.putShort(dat.getShortExtra("CNT", (short)0));
-    			buf[(pos * 5) + 91] = bb.get(0);
-    			buf[(pos * 5) + 92] = bb.get(1);
-    			buf[(pos * 5) + 93] = dat.getByteExtra("BUF", (byte)0);
+    			buf[(pos * 5) + 91 + offset] = bb.get(0);
+    			buf[(pos * 5) + 92 + offset] = bb.get(1);
+    			buf[(pos * 5) + 93 + offset] = dat.getByteExtra("BUF", (byte)0);
     			refresh();
     		}
     	}
