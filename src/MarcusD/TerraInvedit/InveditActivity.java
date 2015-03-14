@@ -38,7 +38,6 @@ public class InveditActivity extends ListActivity {
 	String abs;
 	ItemRegistry ir;
 	public int offset = 0;
-	Menu menu;
 	boolean corrupt = false;
 
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
@@ -133,7 +132,6 @@ public class InveditActivity extends ListActivity {
     		if(res == 3)
     		{
     			this.offset = dat.getIntExtra("PAD", 0);
-    			menu.getItem(R.id.item3).setTitle("Offset: "+ this.offset);
     		}
     	}
     	else
@@ -160,7 +158,6 @@ public class InveditActivity extends ListActivity {
 	{
 		MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.menu_invedit, menu);
-	    this.menu = menu;
 	    return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -197,19 +194,33 @@ public class InveditActivity extends ListActivity {
 	public void padforce(boolean auto, boolean manual)
 	{
 		AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-		dlgAlert.setMessage((manual ? "" : "These items seem corrupt. ") + "Do you want to adjust the padding a bit?" + (manual ? "" : "\n\nNote: saving at this point may corrupt your player file! Use with caution!"));
-		dlgAlert.setTitle("Padding");
-		dlgAlert.setPositiveButton("Yup", new OnClickListener()
+		dlgAlert.setMessage((manual ? "" : getString(R.string.javatrans_padcorrupt)) + getString(R.string.javatrans_padq) + (manual ? "" : getString(R.string.javatrans_padw)));
+		dlgAlert.setTitle(getString(R.string.javatrans_padtitle));
+		if(manual)
 		{
-			@Override
-			public void onClick(DialogInterface dialog, int which)
+			dlgAlert.setPositiveButton(getString(R.string.javatrans_k), new OnClickListener()
 			{
-				padB(false);
-			}
-		});
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					padB(true);
+				}
+			});
+		}
+		else
+		{
+			dlgAlert.setPositiveButton(getString(R.string.javatrans_k), new OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					padB(false);
+				}
+			});
+		}
 		if(auto)
 		{
-			dlgAlert.setNeutralButton("Automatic", new OnClickListener()
+			dlgAlert.setNeutralButton(getString(R.string.javatrans_auto), new OnClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which)
@@ -226,7 +237,7 @@ public class InveditActivity extends ListActivity {
 				}
 			});
 		}
-		dlgAlert.setNegativeButton("Nope", new OnClickListener()
+		dlgAlert.setNegativeButton(getString(R.string.javatrans_nop), new OnClickListener()
 		{
 			@Override
 			public void onClick(DialogInterface dialog, int which)
@@ -243,9 +254,10 @@ public class InveditActivity extends ListActivity {
 		final ProgressDialog pd = new ProgressDialog(getApplicationContext());
 		pd.setCancelable(false);
 		pd.setIndeterminate(true);
-		pd.setTitle("Fixing padding...");
+		pd.setTitle(getString(R.string.javatrans_padfix));
 		pd.setMax(16);
 		pd.setProgress(0);
+		//pd.show();
 		for(int i = 0; i != 17; i++)
 		{
 			this.offset = i;
@@ -267,7 +279,7 @@ public class InveditActivity extends ListActivity {
 	public void padB(boolean cancellable) // padding dialog
     {
          final Dialog d = new Dialog(this);
-         d.setTitle("Offset padding");
+         d.setTitle(getString(R.string.javatrans_padtitle));
          d.setContentView(R.layout.dialog_pad);
          Button b1 = (Button) d.findViewById(R.id.button1);
          Button b2 = (Button) d.findViewById(R.id.button2);

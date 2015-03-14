@@ -62,6 +62,8 @@ public class MainActivity extends Activity {
 				{
 					bad = !Shell.SU.available();
 					
+					
+					
 					Log.d("roottest", "is root bad? " + bad);
 					
 					if(bad)

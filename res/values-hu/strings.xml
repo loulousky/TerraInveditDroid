@@ -19,4 +19,12 @@
     <string name="javatrans_item_empty">* Nem létező item *</string>
     <string name="javatrans_rootprogress">Root jogok kérelmezése folyamatban&#8230;</string>
     <string name="javatrans_rootejj">Sajnos root jogok nélkül nem tudok segíteni :(</string>
+    <string name="javatrans_padtitle">Mentés eltolás</string>
+    <string name="javatrans_padcorrupt">Ezek az itemek sérültnek tűnnek. </string>
+    <string name="javatrans_padq">Be szeretnéd állítani a mentéseltolást?</string>
+    <string name="javatrans_padw">\n\nMegjegyzés: mentéseltolás után menteni veszélyes! Használd figyelemmel!</string>
+    <string name="javatrans_auto">Autómatikus</string>
+    <string name="javatrans_nop">Nem</string>
+    <string name="javatrans_k">Igen</string>
+    <string name="javatrans_padfix">Mentés eltolása&#8230;</string>
 </resources>

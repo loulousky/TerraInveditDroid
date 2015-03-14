@@ -20,5 +20,13 @@
     <string name="javatrans_item_empty">* Nonexistent item *</string>
     <string name="javatrans_rootprogress">Acquiring root&#8230;</string>
     <string name="javatrans_rootejj">Unable to acquire root</string>
+    <string name="javatrans_padtitle">Save offset</string>
+    <string name="javatrans_padcorrupt">These items seem corrupt. </string>
+    <string name="javatrans_padq">Do you want to adjust the padding a bit?</string>
+    <string name="javatrans_padw">\n\nNote: saving at this point may corrupt your player file! Use with caution!</string>
+    <string name="javatrans_auto">Automatic</string>
+    <string name="javatrans_nop">Nope</string>
+    <string name="javatrans_k">Yup</string>
+    <string name="javatrans_padfix">Fixing padding&#8230;</string>
 
 </resources>
