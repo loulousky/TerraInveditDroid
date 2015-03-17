@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	public Boolean bad = false;
+	public Boolean beroken = false;
 	ProgressDialog pd;
     @Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -60,13 +60,13 @@ public class MainActivity extends Activity {
 			{
 				try
 				{
-					bad = !Shell.SU.available();
+					beroken = !Shell.SU.available();
 					
 					
 					
-					Log.d("roottest", "is root bad? " + bad);
+					Log.d("roottest", "is root beroken? " + beroken);
 					
-					if(bad)
+					if(beroken)
 					{
 						runOnUiThread(new Runnable()
 						{
@@ -78,8 +78,6 @@ public class MainActivity extends Activity {
 								tempast.show();
 							}
 						});
-						
-						finish();
 					}
 					else
 					{
