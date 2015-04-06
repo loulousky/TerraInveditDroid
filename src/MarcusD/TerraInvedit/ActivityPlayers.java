@@ -2,14 +2,17 @@ package MarcusD.TerraInvedit;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +26,6 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -67,7 +69,14 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
         
         for(String s : str)
         {
-        	listItems.add(new Playerdata(new File(s), s.substring(s.lastIndexOf("/") + 1, s.length() - 18)));
+        	try
+        	{
+        		listItems.add(new Playerdata(new File(s), s.substring(s.lastIndexOf("/") + 1, s.length() - 18)));
+        	}
+        	catch(Throwable t)
+        	{
+        		listItems.add(new Playerdata(new File(s), "* Unknown *"));
+        	}
         }
         
         refresh();
@@ -177,14 +186,30 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 							}.sort());
 						}
 						
-						List<String> ret = Shell.SU.run("cat " + pd.file.getAbsolutePath() + " | base64");
-						String b64 = "";
-						for(String s : ret)
+						final File t = new File(getApplicationContext().getFilesDir(), "temp.bin");
+						if(t.exists()) t.delete();
+						
+						final List<String> str = Shell.SU.run("cp " + pd.file.getAbsolutePath() + " " + t.getAbsolutePath());
+						if(!t.exists())
 						{
-							b64 += s;
+							runOnUiThread(new Runnable()
+							{
+								@Override
+								public void run()
+								{
+									Toast.makeText(getApplicationContext(), "Unable to copy\n\"" + pd.file.getAbsolutePath() + "\"\nto \"" + t.getAbsolutePath() + "\"" + (str.size() == 0 ? "" : "\nCaused by:\n" + joinList(str)), Toast.LENGTH_LONG).show();
+								}
+							});
+							return;
 						}
 						
-						byte[] pdata = Base64.decode(b64, Base64.NO_WRAP);
+						DataInputStream fis = new DataInputStream(new FileInputStream(t));
+						
+						byte[] pdata = new byte[(int) t.length()];
+						
+						fis.readFully(pdata);
+						fis.close();
+						
 						
 						Intent it = new Intent(getApplicationContext(), InveditActivity.class);
 						it.putExtra("INV", pdata);
@@ -194,7 +219,15 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 					}
 					else
 					{
-						finish();
+						runOnUiThread(new Runnable()
+						{
+							@Override
+							public void run()
+							{
+								Toast.makeText(getApplicationContext(), getString(R.string.javatrans_rootejj), Toast.LENGTH_LONG).show();
+							}
+						});
+						return;
 					}
 					
 				}
@@ -206,6 +239,22 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 				pdi.dismiss();
 			}
 		}).start();
+	}
+	
+	private static String joinList(List<String> str)
+	{
+		StringBuilder sb = new StringBuilder();
+		Iterator<String> i = str.iterator();
+		
+		if(!i.hasNext()) return "";
+		sb.append(i.next());
+		while(i.hasNext())
+		{
+			sb.append('\n');
+			sb.append(i.next());
+		}
+		
+		return sb.toString();
 	}
 	
 	@Override
@@ -243,7 +292,15 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 							}
 							else
 							{
-								finish();
+								runOnUiThread(new Runnable()
+								{
+									@Override
+									public void run()
+									{
+										Toast.makeText(getApplicationContext(), getString(R.string.javatrans_rootejj), Toast.LENGTH_LONG).show();
+									}
+								});
+								return;
 							}
 							
 						}
