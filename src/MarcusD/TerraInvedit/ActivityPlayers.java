@@ -71,7 +71,16 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
         {
         	try
         	{
-        		listItems.add(new Playerdata(new File(s), s.substring(s.lastIndexOf("/") + 1, s.length() - 18)));
+        		int p = s.lastIndexOf("/") + 1; 
+        		int q = s.length() - 18;
+        		if(p >= q)
+        		{
+        			listItems.add(new Playerdata(new File(s), "* Unknown *"));
+        		}
+        		else
+        		{
+        			listItems.add(new Playerdata(new File(s), s.substring(p,q)));
+        		}
         	}
         	catch(Throwable t)
         	{
@@ -189,7 +198,7 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 						final File t = new File(getApplicationContext().getFilesDir(), "temp.bin");
 						if(t.exists()) t.delete();
 						
-						final List<String> str = Shell.SU.run("cp " + pd.file.getAbsolutePath() + " " + t.getAbsolutePath());
+						final List<String> str = Shell.SU.run("cat " + pd.file.getAbsolutePath() + " > " + t.getAbsolutePath());
 						if(!t.exists())
 						{
 							runOnUiThread(new Runnable()
@@ -202,6 +211,8 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 							});
 							return;
 						}
+						
+						Shell.SU.run("chmod 777 " + t.getAbsolutePath());
 						
 						DataInputStream fis = new DataInputStream(new FileInputStream(t));
 						
@@ -287,7 +298,7 @@ public class ActivityPlayers extends ListInteractive<Playerdata> {
 								bos.flush();
 								bos.close();
 								//Shell.SU.run("rm " + dat.getStringExtra("ABSINV"));
-								Shell.SU.run("cp " + f.getAbsolutePath() + " " + dat.getStringExtra("ABSINV"));
+								Shell.SU.run("cat " + f.getAbsolutePath() + " > " + dat.getStringExtra("ABSINV"));
 								Shell.SU.run("chmod 777 " + dat.getStringExtra("ABSINV"));
 							}
 							else
